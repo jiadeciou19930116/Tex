@@ -658,7 +658,6 @@ Hence, the split-step marching solutions to each of the four splittings in (\ref
 \label{Fig_surround}
 \end{figure}
 }
-///////////\\
 \subsection{process boundary condition, volume attenuation and variable density in shallow water}
 
 A schematic of the solution domain is shown in Fig.(\ref{Fig_surround}). \\
@@ -716,7 +715,7 @@ function at a given horizantal location of the form \cite{Tappert_WPU_tpam}(\cit
 \label{eqn_1098}
 \end{eqnarray}
 where $z_b$ is the depth of the interface, $L$ is the distance over which the density
-changes from $\rho_1$ to $\rho_2$ and must be small compared to the vertically projected wavelength.
+changes from $\rho_0$ to $\rho_b$ and must be small compared to the vertically projected wavelength.
 An appropriate value of $L$ is given by
 \begin{eqnarray}
 &&k_0 L = 2
@@ -961,17 +960,9 @@ where $n$ is the number of pair reflecting on sea surface and bottom. The corres
 If $n$ increases, the propagation angles approach $90^\circ$, the reflection coefficienties would be very small so we can neglect them. 
 The simulation result of (\ref{ex_10}) show in Fig.(\ref{Fig_pic3}.b).
 
-Here we use another way, the slip-step Fourier algorithm to solve this example. We apply (\ref{eqn_1088}) to find $\psi(r,z)$, and the simulation transmission loss show in Fig.(\ref{Fig_pic8}).
-\textcolor{blue}{
-We choose $3$dB as acceptable accuracy, which means 
-\begin{eqnarray}
-&& 20 \left| \log_{10} \left(\frac{\psi + E_1 + E_2}{\psi} \right) \right| \leq 3
-\label{ex_11}
-\end{eqnarray}
-where $E_1$ and $E_2$ are defined as (\ref{eqn_1103}) and (\ref{eqn_1104}), and we can find the maximun of $\Delta r$.
-(\ref{eqn_1105}) show the maximun of $\Delta z$.
-}
 
+
+\subsection{EXAMPLE B}
 \begin{figure}[h]
 \vskip 5 cm
 \hskip 1 cm
@@ -986,38 +977,23 @@ where $E_1$ and $E_2$ are defined as (\ref{eqn_1103}) and (\ref{eqn_1104}), and 
 \hskip 4.5cm (c)
 \caption{slip-step Fourier algorithm.(a)Fourier transform: transmition loss at $z = 99.5$ and (b) radiate pattern,(c) reference solution;
 ; $f = 250$ Hz, $z_b = 100$ m, $z_s = 99.5$ m, $z_r = 99.5$ m, 
-$\rho_a = 1.293 \times 10^{-3}$ g/cm$^3$, $c_a = 340$ m/s, $\rho_0 = 1$ g/cm$^3$, $c_0 = 1,500$ m/s, 
-$\rho_b =  1.2$ g/cm$^3$, $c_b = 1,590$ m/s, $\Delta r = 1$ m and $\Delta z = 0.5$ m, $\alpha^{(\lambda)}_b = 0.5$ dB/$\lambda$, $H = 197$ m, $D = 19.67$ m, $L = 1.91$ m.}
+%$\rho_a = 1.293 \times 10^{-3}$ g/cm$^3$, $c_a = 340$ m/s, 
+$\rho_0 = 1$ g/cm$^3$, $c_0 = 1,500$ m/s, 
+$\rho_b =  1.2$ g/cm$^3$, $c_b = 1,590$ m/s, $\Delta r = 0.5$ m and $\Delta z = 0.5$ m, 
+$\alpha^{(\lambda)}_b = 0.5$ dB/$\lambda$, $H = 197$ m, $D = 19.67$ m, $L = 1.91$ m.}
 \label{Fig_pic8}
 \end{figure}
-
-\subsection{EXAMPLE B}
-\begin{figure}[h]
-\vskip 5 cm
-\hskip 1 cm
-\special{wmf: COA_6_8_a.jpg x=6.5cm y=5.2cm}
-\hskip 7 cm
-\special{wmf: COA_6_8_b.jpg x=6.5cm y=5.2cm}
-\vskip 0cm
-\hskip 4.5cm (a) \hskip 6cm (b)
-\vskip 5 cm
-\hskip 1 cm
-\special{wmf: COA_6_8_radia_pattern_FT_2.jpg x=6.5cm y=5.2cm}
-\hskip 7 cm
-\special{wmf: COA_6_8_TransLoss_30_FT_2.jpg x=6.5cm y=5.2cm}
-\vskip 0cm
-\hskip 4.5cm (c) \hskip 6cm (d)
-\caption{(a)Test environment, (b)reference transmition loss of slip-step Fourier algorithm at 30m,
-(c)$\&$(d) radiation patterns and simulate result for Fourier transform;
-the up black line on (c) and (d) is interface of seawater and bottom, the down black line is the begin of absorption layer.
-$f = 25$ Hz, $z_s = 100$ m, $z_r = 30$ m, 
-$\rho_0 = \rho_1 = 1,000$ kg/m$^3$, $c_0 = c_1 = 1,500$ m/s, 
-$\rho_b = \rho_2 = 1,500$ kg/m$^3$, $c_b = c_2 = 1,700$ m/s, $\Delta r = 1$ m and $\Delta z = 1$ m, $H = 384$ m, $D = 42.67$ m, $L = 19.1$ m, $\alpha^{(\lambda)} = \alpha_2 = 0.5$ dB/$\lambda$.}
-\label{Fig_pic9}
-\end{figure}
-We apply Gaussian's source as the initial field.
-In here, we apply (\ref{eqn_1088}) to solve another problem with a slope sea bottom.
-As last example, the acceptable accuracy is $3$dB.
+Here we use another way to solve the problem Fig. 6.2 in \cite{COA}, the slip-step Fourier algorithm. 
+We apply (\ref{eqn_1088}) to find $\psi(r,z)$, and the simulation transmission loss show in Fig.(\ref{Fig_pic8}).
+\textcolor{blue}{
+We choose $3$dB as acceptable accuracy, which means 
+\begin{eqnarray}
+&& 20 \left| \log_{10} \left(\frac{\psi + E_1 + E_2}{\psi} \right) \right| \leq 3
+\label{ex_11}
+\end{eqnarray}
+where $E_1$ and $E_2$ are defined as (\ref{eqn_1103}) and (\ref{eqn_1104}), and we can find the maximun of $\Delta r$.
+(\ref{eqn_1105}) show the maximun of $\Delta z$.
+}
 The effective index of refraction $\tilde{n}$ definited from (\ref{eqn_1092}), (\ref{eqn_1095}) and (\ref{eqn_1097}) showed as follow 
 \begin{eqnarray}
 &&\tilde{n}^2(r, z) = \left\{ \begin{array}{ll}
@@ -1033,46 +1009,20 @@ z_b + L / 2 < z \leq H \\ & \\
 \end{array} \right. 
 \label{EXB_1}
 \end{eqnarray}
-We use $\hat{\psi} = \psi/\sqrt{\rho}$ to replacing $\psi$ with the density as (\ref{eqn_1098}). 
+We use $\psi_{ad} = \psi/\sqrt{\rho}$ to replacing $\psi$ with the density as (\ref{eqn_1098}). 
 As show before, we need to decide the grid distance for both calculation speed and accuracy. 
 Applying (\ref{eqn_1103}) and (\ref{eqn_1104}), we know the error values depend on both the partial differential and grid size. 
 With a limitation of error value, there is a maximun grid size.
-In this problem, it is clear type one error is zero, and only at the interface will be error two.
- 
-
-
-
+In this problem, it is clear type one error ($E_1$) is zero, and only at the interface will be error two.
 Then, we apply (\ref{eqn_1097}) with (\ref{eqn_1092_1}) and times the result with $\sqrt{\rho}$ to obtain the solution.
-
 Here we list two different simulation way to compare, the resuls of Fourier transform show in Fig.(\ref{Fig_pic9}.(c)\&(d)).
 
 \subsection{EXAMPLE C}
-Here are two exercises about selecting the depth of absorption layer  under seafloor and design absorption layer in the air.
+Here we solve the same problem in past two examples but extend computing domain to air.
 In this example we apply (\ref{eqn_1088}) to find the solution.
 At first exercise, we change the depth the of the absorption layer, the thickness equal to 1/3 from sea surface to begin of absorption layer. 
 The results show in Fig.(\ref{Fig_pic11}). 
 We can know the three line is almostly the same but near $7$ km at the range, so we just use the condition of red line to design the ABL under sea bottom for the second exercise.
-
-\begin{figure}[h]
-\vskip 5 cm
-\hskip 1 cm
-\special{wmf: ABL_sb_all.jpg x=6.5cm y=5.2cm}
-\hskip 7 cm
-\special{wmf: ABL_sb_enlarge.jpg x=6.5cm y=5.2cm}
-\vskip 0cm
-\hskip 4.5cm (a) \hskip 6cm (b)
-\vskip 5 cm
-\hskip 1 cm
-\special{wmf: COA_6_2_ref.jpg x=6.5cm y=5.2cm}
-\vskip 0cm
-\hskip 4.5cm (c) 
-\caption{(a)TL for different depth of ABL start, 192 m for red line, 384 m for blue line and 768 m for black line (b)enlarge picture of (a),
-(c)the refference solution
-$f = 250$ Hz, $z_s = 99.5$ m, $z_r = 99.5$ m, 
-$\rho_0 = 1,000$ kg/m$^3$, $c_0 = 1,500$ m/s, 
-$\rho_b = 1,500$ kg/m$^3$, $c_b = 1,590$ m/s, $\Delta r = 0.5$ m and $\Delta z = 0.5$ m,  $L = 1.91$ m, $\alpha^{(\lambda)}_b = \alpha_2 = 0.5$ dB/$\lambda$.}
-\label{Fig_pic11}
-\end{figure}
 
 
 %\begin{figure}[h]
@@ -1087,7 +1037,6 @@ The second exercise is designing ABL in air. The environment show in Fig.(\ref{F
 Like the list in (\ref{EXB_1}), we use (\ref{eqn_1092}), (\ref{eqn_1093}), (\ref{eqn_1097}) and (\ref{eqn_1098}) to find index of refraction in different depth and height, and list here. 
 \textcolor{blue}{
 By (\ref{EX_11}), if we choose $\Delta r = \Delta z = 0.5$m, the error is 1.318 dB at 7 km.  
-\\
 The mass density approximation at interface is defined by (\ref{eqn_1098}) and so we can use (\ref{A16}) to find the index of refraction approximation at interface.
 Here we show the first and second order partial differetial at bottom
 \begin{eqnarray}
@@ -1104,40 +1053,40 @@ Likely, the mass density approximation at air/water interface is
 &&\rho(z) = \frac{1}{2}(\rho_0 + \rho_a) + \frac{1}{2}(\rho_0 - \rho_a) \tanh\left(\frac{z - 0}{L_a} \right), \hspace{0.3mm}
 \label{EXC_0}
 \end{eqnarray}
-But by the derivation in appendix, we should extend $L_a$ so the variable between each grid point is small enough.(Not yet dicide the value of $L_a$)
-Which mean $\rho_1$ are very small than $\rho_0$ at the interface.
+But by the derivation in appendix, we should extend $L_a$ so the variable between each grid point is small enough.(Not yet find the way to dicide the value of $L_a$)
 }
 We use the information of \cite{a_a_t_h}, choose $0^\circ C$, 10 percent relative humidity, windless air and decide.
 \begin{eqnarray}
 &&\tilde{n}^2(r, z) = \left\{ \begin{array}{ll}
-\displaystyle n_a^2 \left[1 + i \frac{\alpha_a^{(\lambda)}}{27.29} \right] 
-+ 0.01 \times i \exp \left[ -\left (\frac{z_{a\max} - z}{D_a} \right )^2\right], \hspace{1in} & -z_{a\max} < z \leq -H_a \\ & \\
+\displaystyle n_a^2 \left[1 + i \frac{\alpha_a^{(\lambda)}}{27.29} \right] + 0.01 \times i \exp \left[ -\left (\frac{z_{a\max} - z}{D_a} \right )^2\right], 
+\hspace{1in} & -z_{a\max} < z \leq -H_a \\ & \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \displaystyle n_a^2 \left[1 + i \frac{\alpha_a^{(\lambda)}}{27.29} \right],
  \hspace{1in} &  -H_a < z \leq - L_a / 2 \\ & \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \displaystyle n_a^2 + \frac{1}{2k_0^2}\left[ \frac{1}{\rho} \frac{\partial^2 \rho}{\partial z^2} 
 - \frac{3}{2 \rho^2} \left(\frac{\partial \rho}{\partial z} \right)^2 \right], &
-- L / 2 < z \leq 0 \\ & \\
-n_0^2, \hspace{1in} & 0 < z \leq z_b - L_b / 2 \\ & \\
-\displaystyle n_0^2 + \frac{1}{2k_0^2}\left[ \frac{1}{\rho} \frac{\partial^2 \rho}{\partial z^2} 
+- L_a / 2 < z \leq L_a / 2 \\ & \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+n_0^2, \hspace{1in} & L_a / 2 < z \leq z_b - L_b / 2 \\ & \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\displaystyle n_b^2 + \frac{1}{2k_0^2}\left[ \frac{1}{\rho} \frac{\partial^2 \rho}{\partial z^2} 
 - \frac{3}{2 \rho^2} \left(\frac{\partial \rho}{\partial z} \right)^2 \right], &
 z_b - L_b / 2 < z \leq z_b + L_b / 2 \\ & \\
-\displaystyle n_b^2\left[1 + i \frac{\alpha^{(\lambda)}}{27.29} \right], &
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\displaystyle n_b^2\left[1 + i \frac{\alpha_b^{(\lambda)}}{27.29} \right], &
 z_b + L_b / 2 < z \leq H_b \\ & \\
-\displaystyle n_b^2  \left[1 + i \frac{\alpha^{(\lambda)}}{27.29} \right] 
-+ 0.01 \times i \exp \left[ -\left (\frac{z - z_{\max}}{D} \right )^2\right],
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\displaystyle n_b^2  \left[1 + i \frac{\alpha_b^{(\lambda)}}{27.29} \right] 
++ 0.01 \times i \exp \left[ -\left (\frac{z - z_{b\max}}{D_b} \right )^2\right],
 & H_b < z \leq z_{b\max}
 \end{array} \right. 
 \label{EXC_1}
 \end{eqnarray}
-Where $n_a$ is the index of refraction, $\alpha_a^{(\lambda)}$ is attenuation coefficient in air \cite{a_a_t_h}; 
-$z_a$ and $H_a$ are the heights of ABL up and down boundarys in air.
 \textcolor{blue}{
-$z_{a\max}$ and $z_{b\max}$ are the up and down limitation of calculation. }
-In (\ref{eqn_1092}), $D_b$ is set as one-third of thickness of ROI under sea surface; here we set $D_a = (H_a - z_{a\max}) / 3$.
-\\
-The red line is no ROI in air, others are opposite.
-After add the part of ROI in air, TL in all region increase about 10 dB. But the minimun happened ahead 1 km.  
-
+Where $n_a$, $n_0$ and $n_b$ ares the indexes of refraction of air, water and bottom;
+ $\alpha_a^{(\lambda)}$ and $\alpha_b^{(\lambda)}$ are attenuation coefficient in air\cite{a_a_t_h} and bottom; 
+$z_{a\max}$ and $z_{a\max}$ are the up and down limitation of compute domain; $D_b = (H_b - z_{b\max}) / 3$ and  $D_a = (H_a - z_{a\max}) / 3$.}
 \begin{figure}[h]
 \vskip 5 cm
 \hskip 1 cm
@@ -1172,67 +1121,69 @@ Here list equation of continuity, motion and state,
 \label{A3}
 \end{eqnarray}
 where $\rho$ is mass density of flow, $t$ is time, $\bar{u}$ is flow velocity and $V$ is potential of gravity, $\kappa$ is bulk modulus. 
-Now we consider a static solution, in which the density, the pressure, and the bulk modulus are independent of $t$ and subscript 0 for every variable. In static solution the velocity vanishes ($\bar{u}_0 = 0$) and (\ref{A2}) reduces to 
+Now we consider a static solution, in which the density $\rho_s$, the pressure $p_s$, and the bulk modulus $\kappa_s$ are independent of $t$, and the velocity vanishes ($\bar{u}_s = 0$), (\ref{A2}) reduces to 
 \begin{eqnarray}
-&&\nabla p_0 + \rho_0 \nabla V = 0
+&&\nabla p_s + \rho_s \nabla V = 0
 \label{A4}
 \end{eqnarray}
-and $\kappa$ is defined by means of virtual nonstatic variations of the solution.
-Now we add small chang,
+and $\kappa_s$ is defined by means of virtual nonstatic variations of the solution.
+Then we add small perturbation which subscript 1,
 \begin{eqnarray}
-&&\rho = \rho_0 + \rho_1, \hspace{0.3 cm} \bar{u} = \bar{u}_0 + \bar{u}_1
+&&\rho = \rho_s + \rho_1, \hspace{0.3 cm} \bar{u} = \bar{u}_s + \bar{u}_1 = \bar{u}_1 , 
+\hspace{0.3 cm} p = p_s + p_1 , \hspace{0.3 cm} \kappa = \kappa_s + \kappa_1
 \label{A4_1}
 \end{eqnarray}
 than we obtain (\ref{A1}), (\ref{A2}) and (\ref{A3}) become 
 \begin{eqnarray}
-&&\frac{\partial \rho_1}{\partial t} + \nabla \cdot ( \rho \bar{u}_1) = 0
+&&\frac{\partial \rho_1}{\partial t} + \nabla \cdot [ (\rho_s + \rho_1) \bar{u}_1] = 0
 \label{A5}\\
-&&\rho \frac{\partial \bar{u}_1}{\partial t} + \nabla p_1 + \rho \nabla V = 0
+&&(\rho_s + \rho_1) \frac{\partial \bar{u}_1}{\partial t} + \nabla (p_s + p_1) + (\rho_s + \rho_1) \nabla V = 0
 \label{A6}\\
-&&\frac{\partial p_1}{\partial t} + \bar{u}_1 \cdot \nabla p_0 = \frac{\kappa}{\rho} \left( \frac{\partial \rho}{\partial t} + \bar{u}_1  \cdot \nabla \rho \right)
+&&\frac{\partial (p_s + p_1)}{\partial t} + \bar{u}_1 \cdot \nabla (p_s + p_1) = \frac{(\kappa_s + \kappa_1)}{(\rho_s + \rho_1)} \left( \frac{\partial \rho_1}{\partial t} + \bar{u}_1  \cdot \nabla (\rho_s + \rho_1) \right)
 \label{A7}
 \end{eqnarray}
-\textcolor{blue}{if $\rho_0 \gg \rho_1$ and $\kappa_0 \gg \kappa_1$ (maybe don't used with the air layer.)}, substituding (\ref{A5}) into (\ref{A7}) and we can obtain
+\textcolor{blue}{Because the perturbation is small, we can ignore the product of two variable which subscript 1,(maybe don't used with the air layer.)}; and $\frac{(\kappa_s + \kappa_1)}{(\rho_s + \rho_1)} \sim \frac{\kappa_s}{\rho_s}$
+ substituding (\ref{A5}) into (\ref{A7}) and we can obtain
 \begin{eqnarray}
-&&\frac{\partial p_1}{\partial t} + \bar{u}_1 \cdot \nabla p_0 + \kappa_0 \nabla \cdot \bar{u}_1 = 0 
+&&\frac{\partial p_1}{\partial t} + \bar{u}_1 \cdot \nabla p_s + \kappa_s \nabla \cdot \bar{u}_1 = 0 
 \label{A8}
 \end{eqnarray}
 $p_1$ is the variable commonly referred to as the sound pressure, $\rho_1$ is the mass density change of the (compressible) fluid associated with the sound wave, and $\bar{u}_1$ is the instantaneous material velocity of the fluid.
-Here we consider $p_0$ as constanst depent on $V$, and ignored the effect gravity, then (\ref{A6}) and (\ref{A8}) are simplified as
+Here we consider $p_s$ as constanst depent on $V$, and ignored the effect gravity, then (\ref{A6}) and (\ref{A8}) are simplified as
 \begin{eqnarray}
-&&\rho \frac{\partial \bar{u_1}}{\partial t} + \nabla p_1 = 0
+&&\rho_s \frac{\partial \bar{u_1}}{\partial t} + \nabla p_1 = 0
 \label{A9}\\
-&&\frac{\partial p_1}{\partial t} + \kappa_0 \nabla \cdot \bar{u_1} = 0
+&&\frac{\partial p_1}{\partial t} + \kappa_s \nabla \cdot \bar{u_1} = 0
 \label{A10}
 \end{eqnarray}
-(\ref{A9}) is divided by $\rho_0$, (\ref{A10}) is divide by $\kappa_0$ and differentiated
+(\ref{A9}) is divided by $\rho_s$, (\ref{A10}) is divide by $\kappa_s$ and differentiated
 with respect to the time $t$, then we obtain
 \begin{eqnarray}
-&&\frac{1}{\kappa_0}\frac{\partial^2 p_1}{\partial t^2} - \nabla \cdot \frac{\nabla p_1}{\rho} = 0
+&&\frac{1}{\kappa_s}\frac{\partial^2 p_1}{\partial t^2} - \nabla \cdot \frac{\nabla p_1}{\rho_s} = 0
 \label{A11}\\
-&&\nabla^2 p_1 - \frac{\rho}{\kappa_0}\frac{\partial^2 p_1}{\partial t^2} -\frac{1}{\rho} \nabla \rho \cdot \nabla p_1 = 0
+&&\nabla^2 p_1 - \frac{\rho_s}{\kappa_s}\frac{\partial^2 p_1}{\partial t^2} -\frac{1}{\rho_s} \nabla \rho_s \cdot \nabla p_1 = 0
 \label{A12}
 \end{eqnarray}
 Introducing a new wave variable, namely
 \begin{eqnarray}
-&&P = \frac{p_1}{\sqrt{\rho}}
+&&P = \frac{p_1}{\sqrt{\rho_s}}
 \label{A13}
 \end{eqnarray}
 Then (\ref{A12}) become
 \begin{eqnarray}
-&&\nabla^2 P - \frac{\rho}{\kappa_0}\frac{\partial^2 P}{\partial t^2} 
-+ \left[\frac{\nabla^2 \rho}{2 \rho} - \frac{3}{4} \left( \frac{\nabla \rho}{\rho} \right)^2 \right] P = 0
+&&\nabla^2 P - \frac{\rho_s}{\kappa_s}\frac{\partial^2 P}{\partial t^2} 
++ \left[\frac{\nabla^2 \rho_s}{2 \rho_s} - \frac{3}{4} \left( \frac{\nabla \rho_s}{\rho_s} \right)^2 \right] P = 0
 \label{A14}
 \end{eqnarray}
 for time independent form of (\ref{A14}),
 \begin{eqnarray}
-&&\nabla^2 P + k_0 n^2 P + \left[ \frac{\nabla^2 \rho}{2 \rho} - \frac{3}{4} \left(\frac{\nabla \rho}{\rho}\right)^2 \right] P = 0
+&&\nabla^2 P + k_s n^2 P + \left[ \frac{\nabla^2 \rho_s}{2 \rho_s} - \frac{3}{4} \left(\frac{\nabla \rho_s}{\rho_s}\right)^2 \right] P = 0
 \label{A15} \\
-&&\nabla^2 P + k_0 \tilde{n}^2 P = 0, \hspace{0.3cm} 
-\tilde{n}^2 = n^2 + \left[ \frac{\nabla^2 \rho}{2 \rho} - \frac{3}{4} \left( \frac{\nabla \rho}{\rho} \right)^2 \right]
+&&\nabla^2 P + k_s \tilde{n}^2 P = 0, \hspace{0.3cm} 
+\tilde{n}^2 = n^2 + \left[ \frac{\nabla^2 \rho_s}{2 \rho_s} - \frac{3}{4} \left( \frac{\nabla \rho_s}{\rho_s} \right)^2 \right]
 \label{A16}
 \end{eqnarray}
-where $k_0$ is the reference wavenumber.
+where $k_s$ is the reference wavenumber.
 
 
 
