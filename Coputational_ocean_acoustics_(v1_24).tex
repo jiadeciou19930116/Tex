@@ -716,7 +716,11 @@ function at a given horizantal location of the form \cite{Tappert_WPU_tpam}(\cit
 \end{eqnarray}
 where $z_b$ is the depth of the interface, $L$ is the distance over which the density
 changes from $\rho_0$ to $\rho_b$ and must be small compared to the vertically projected wavelength.
-An appropriate value of $L$ is given by
+\textcolor{blue}{
+Idealized theory on augmenting acoustic transmission across the interface
+between two fluid media by quarter-wave coupling is classical \cite{a_t_a_a}.
+But an appropriate value of $L$ is given by Tappert \cite{COA}
+}
 \begin{eqnarray}
 &&k_0 L = 2
 \label{eqn_1099}
@@ -985,7 +989,7 @@ $\alpha^{(\lambda)}_b = 0.5$ dB/$\lambda$, $H = 197$ m, $D = 19.67$ m, $L = 1.91
 \end{figure}
 Here we use another way to solve the problem Fig. 6.2 in \cite{COA}, the slip-step Fourier algorithm. 
 We apply (\ref{eqn_1088}) to find $\psi(r,z)$, and the simulation transmission loss show in Fig.(\ref{Fig_pic8}).
-\textcolor{blue}{
+
 We choose $3$dB as acceptable accuracy, which means 
 \begin{eqnarray}
 && 20 \left| \log_{10} \left(\frac{\psi + E_1 + E_2}{\psi} \right) \right| \leq 3
@@ -993,12 +997,19 @@ We choose $3$dB as acceptable accuracy, which means
 \end{eqnarray}
 where $E_1$ and $E_2$ are defined as (\ref{eqn_1103}) and (\ref{eqn_1104}), and we can find the maximun of $\Delta r$.
 (\ref{eqn_1105}) show the maximun of $\Delta z$.
+At the approximattion region ($z_b - L / 2 < z \leq z_b + L / 2$), speed of the sound should also increase with depth.
+\textcolor{blue}{
+Here we use interpolation to approximate the speed of sound $c(z)$
+\begin{eqnarray}
+&&c(z) = c_0 \frac{z_b + L/2}{L} + c_b \frac{z_b - L/2}{L}, \hspace{0.3 cm} z_b - L / 2 < z \leq z_b + L / 2
+\label{ex_12}
+\end{eqnarray}
 }
 The effective index of refraction $\tilde{n}$ definited from (\ref{eqn_1092}), (\ref{eqn_1095}) and (\ref{eqn_1097}) showed as follow 
 \begin{eqnarray}
 &&\tilde{n}^2(r, z) = \left\{ \begin{array}{ll}
 n_0^2, \hspace{1in} & 0 < z \leq z_b - L / 2 \\ & \\
-\displaystyle n_0^2 + \frac{1}{2k_0^2}\left[ \frac{1}{\rho} \frac{\partial^2 \rho}{\partial z^2} 
+\displaystyle n^2 + \frac{1}{2k_0^2}\left[ \frac{1}{\rho} \frac{\partial^2 \rho}{\partial z^2} 
 - \frac{3}{2 \rho^2} \left(\frac{\partial \rho}{\partial z} \right)^2 \right], &
 z_b - L / 2 < z \leq z_b + L / 2 \\ & \\
 \displaystyle n_b^2\left[1 + i \frac{\alpha^{(\lambda)}}{27.29} \right], &
@@ -1023,7 +1034,7 @@ In this example we apply (\ref{eqn_1088}) to find the solution.
 At first exercise, we change the depth the of the absorption layer, the thickness equal to 1/3 from sea surface to begin of absorption layer. 
 The results show in Fig.(\ref{Fig_pic11}). 
 We can know the three line is almostly the same but near $7$ km at the range, so we just use the condition of red line to design the ABL under sea bottom for the second exercise.
-
+The classicall    
 
 %\begin{figure}[h]
 %\vskip 5 cm
@@ -1035,9 +1046,24 @@ We can know the three line is almostly the same but near $7$ km at the range, so
 
 The second exercise is designing ABL in air. The environment show in Fig.(\ref{Fig_pic13}).
 Like the list in (\ref{EXB_1}), we use (\ref{eqn_1092}), (\ref{eqn_1093}), (\ref{eqn_1097}) and (\ref{eqn_1098}) to find index of refraction in different depth and height, and list here. 
-\textcolor{blue}{
+
 By (\ref{EX_11}), if we choose $\Delta r = \Delta z = 0.5$m, the error is 1.318 dB at 7 km.  
-The mass density approximation at interface is defined by (\ref{eqn_1098}) and so we can use (\ref{A16}) to find the index of refraction approximation at interface.
+\textcolor{blue}{
+The the sound speed at two approximate media, at air/water and water/bottom interface are
+\begin{eqnarray}
+&&c_{aw}(z) = c_a \frac{z_a + L_a/2}{L_a} + c_0 \frac{z_0 - L_a/2}{L_a}, \hspace{0.3 cm} z_a - L_a / 2 < z \leq z_a + L_a / 2
+\label{ex_13}\\
+&&c_{wb}(z) = c_0 \frac{z_b + L_a/2}{L_a} + c_b \frac{z_b - L_a/2}{L_b}, \hspace{0.3 cm} z_b - L_b / 2 < z \leq z_b + L_b / 2
+\label{ex_14}
+\end{eqnarray}
+}
+where $k_0 L_b = 2$ is an appropriate value.
+\textcolor{blue}{
+\cite{a_t_a_a} showed the thickness of approximate media at interface should exceed one-quarter of the wavelength. 
+The difference of wavelengths at water and bottom is small, so $L_b$ can be a ratio as $2 / k_0$.
+But wavelength in air is near $1/5$ as in water, so $L_a$ should be shorter.
+}
+The mass density of approximate media at interface is defined by (\ref{eqn_1098}) and so we can use (\ref{A16}) to find the index of refraction approximation at interface. 
 Here we show the first and second order partial differetial at bottom
 \begin{eqnarray}
 &&\rho(z) = \frac{\rho_b + \rho_0}{2} + \frac{\rho_b - \rho_0}{2} \tanh \left(\frac{z - z_b}{L_b}\right)
@@ -1047,21 +1073,21 @@ Here we show the first and second order partial differetial at bottom
 &&\frac{\partial^2 \rho(z)}{\partial z^2} = -\left(\rho_b - \rho_0 \right) \sech^2 \left(\frac{z - z_b}{L_b}\right) \tanh \left(\frac{z - z_b}{L_b}\right)
 \label{A18}
 \end{eqnarray}
-where $k_0 L_b = 2$ is an appropriate value. 
+ 
 Likely, the mass density approximation at air/water interface is
 \begin{eqnarray}
 &&\rho(z) = \frac{1}{2}(\rho_0 + \rho_a) + \frac{1}{2}(\rho_0 - \rho_a) \tanh\left(\frac{z - 0}{L_a} \right), \hspace{0.3mm}
 \label{EXC_0}
 \end{eqnarray}
-But by the derivation in appendix, we should extend $L_a$ so the variable between each grid point is small enough.(Not yet find the way to dicide the value of $L_a$)
-}
+and $n_{aw}(z) = c_0 / c_{aw}(z)$, $n_{wb}(z) = c_0 / c_{wb}(z)$ are index of refraction at two intervening medium.
+The Height of $H_a$ is set over 200 wavelengths in air as 300 m.
 We use the information of \cite{a_a_t_h}, choose $0^\circ C$, 10 percent relative humidity, windless air and decide.
 \begin{eqnarray}
 &&\tilde{n}^2(r, z) = \left\{ \begin{array}{ll}
 \displaystyle n_a^2 \left[1 + i \frac{\alpha_a^{(\lambda)}}{27.29} \right] + 0.01 \times i \exp \left[ -\left (\frac{z_{a\max} - z}{D_a} \right )^2\right], 
 \hspace{1in} & -z_{a\max} < z \leq -H_a \\ & \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\displaystyle n_a^2 \left[1 + i \frac{\alpha_a^{(\lambda)}}{27.29} \right],
+\displaystyle n_{aw}^2(z) \left[1 + i \frac{\alpha_a^{(\lambda)}}{27.29} \right],
  \hspace{1in} &  -H_a < z \leq - L_a / 2 \\ & \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \displaystyle n_a^2 + \frac{1}{2k_0^2}\left[ \frac{1}{\rho} \frac{\partial^2 \rho}{\partial z^2} 
@@ -1070,7 +1096,7 @@ We use the information of \cite{a_a_t_h}, choose $0^\circ C$, 10 percent relativ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 n_0^2, \hspace{1in} & L_a / 2 < z \leq z_b - L_b / 2 \\ & \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\displaystyle n_b^2 + \frac{1}{2k_0^2}\left[ \frac{1}{\rho} \frac{\partial^2 \rho}{\partial z^2} 
+\displaystyle n_{wb}^2 + \frac{1}{2k_0^2}\left[ \frac{1}{\rho} \frac{\partial^2 \rho}{\partial z^2} 
 - \frac{3}{2 \rho^2} \left(\frac{\partial \rho}{\partial z} \right)^2 \right], &
 z_b - L_b / 2 < z \leq z_b + L_b / 2 \\ & \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1095,15 +1121,15 @@ $z_{a\max}$ and $z_{a\max}$ are the up and down limitation of compute domain; $D
 \special{wmf: COA_6_2_ref.jpg x=6.5cm y=5.2cm} 
 \vskip 0cm
 \hskip 4.5cm (a) \hskip 6cm (b)
-\caption{(a) TL with different thicknesses of ROI in the air,
+\caption{(a) TL with different thicknesses of $L_a$ in the air; $L_a$ is: 0m for red line , $L_b / 3$ for black line, $L_b / 5$ for blue line, $L_b / 10$ for green line;    
 (b) reference solution \textcolor{blue}{\cite{COA}}\textcolor{red}{\cite{??}};
 $f = 250$ Hz, $z_s = 99.5$ m, $z_r = 99.5$ m, 
 $\rho_0 = 1,000$ kg/m$^3$, $c_0 = 1,500$ m/s, 
-$\rho_b = 1,500$ kg/m$^3$, $c_b = 1,590$ m/s, $\Delta r = 0.5$ m and $\Delta z = 0.5$ m, $L = 1.91$ m, 
+$\rho_b = 1,500$ kg/m$^3$, $c_b = 1,590$ m/s, $\Delta r = 0.5$ m and $\Delta z = 0.5$ m, $L = 1.91$ m, $L_b = 1.9$ m 
 $\alpha^{(\lambda)}_b = 0.5$ dB/$\lambda$,
 temperature of air is 0$^\circ C$, relative humidity is 10 percent, sound speed in air is $c_a = 331.5 m/s$, 
 attenuation of air $\alpha^{(\lambda)}_a = 0.0346$ dB/$\lambda$ \cite{a_a_t_h}.
-the height of $H_a$ and $z_{a\max}$: both 0 m for red line, 1m and 2m for blue line, 5m and 10m for yellow line, 10m and 20m for green line and 50m and 100m for black line.}
+the height of $H_a$ is 300m and $z_{a\max}$ is 400m.}
 \label{Fig_pic12}
 \end{figure}
 
@@ -1175,7 +1201,7 @@ Then (\ref{A12}) become
 + \left[\frac{\nabla^2 \rho_s}{2 \rho_s} - \frac{3}{4} \left( \frac{\nabla \rho_s}{\rho_s} \right)^2 \right] P = 0
 \label{A14}
 \end{eqnarray}
-for time independent form of (\ref{A14}),
+for time independent form of (\ref{A14}), 
 \begin{eqnarray}
 &&\nabla^2 P + k_s n^2 P + \left[ \frac{\nabla^2 \rho_s}{2 \rho_s} - \frac{3}{4} \left(\frac{\nabla \rho_s}{\rho_s}\right)^2 \right] P = 0
 \label{A15} \\
@@ -1183,8 +1209,7 @@ for time independent form of (\ref{A14}),
 \tilde{n}^2 = n^2 + \left[ \frac{\nabla^2 \rho_s}{2 \rho_s} - \frac{3}{4} \left( \frac{\nabla \rho_s}{\rho_s} \right)^2 \right]
 \label{A16}
 \end{eqnarray}
-where $k_s$ is the reference wavenumber.
-
+where sound speed is $c_s = \sqrt{\frac{\kappa_s}{\rho_s}}$, wave number is $k_s = \frac{\omega_s}{c_s}$.
 
 
 \begin{thebibliography}{99}
@@ -1232,6 +1257,9 @@ Soc. Am. 17, 329¡V333 (1946)
 Absorption of Sound in Air versus Humidity and Temperature
 Cyril M. Harris (1966)
 
+\bibitem{a_t_a_a}
+ACOUSTIC TRANSMISSION AUGMENTATION ACROSS AN AIR/WATER INTERFACE
+Howard A. Thorpe
 \end{thebibliography}
 
 \end{document}
